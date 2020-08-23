@@ -1,11 +1,11 @@
-// import { container } from 'tsyringe';
+import { container } from 'tsyringe';
 
 import './providers';
 
-// import IExamplesRepository from '@modules/examples/repositories/IExamplesRepository';
-// import ExamplesRepository from '@modules/examples/infra/typeorm/repositories/ExamplesRepository';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
 
-// container.registerSingleton<IExamplesRepository>(
-//   'ExamplesRepository',
-//   ExamplesRepository,
-// );
+container.registerSingleton<IUsersRepository>(
+  'UsersRepository',
+  UsersRepository,
+);
