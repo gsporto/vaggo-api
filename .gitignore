@@ -7,7 +7,3 @@ temp/
 coverage
 ormconfig.json
 dist
-
-tmp/*
-!tmp/.gitkeep
-yarn.lock

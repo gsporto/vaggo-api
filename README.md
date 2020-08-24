@@ -6,6 +6,12 @@
 - [Yarn](https://classic.yarnpkg.com/) or [npm](https://www.npmjs.com/)
 - [Docker](https://www.docker.com/)
 
+**Clone the project and access the folder**
+
+```bash
+$ git clone https://github.com/gsporto/vaggo-api && cd vaggo-api
+```
+
 **Follow the steps below**
 
 ```bash
@@ -19,10 +25,10 @@ $ cp .env.example .env
 
 # Create the instance of postgreSQL using docker
 
-$ docker run --name example_postgres -e POSTGRES_USER=example -e POSTGRES_DB=example -e POSTGRES_PASSWORD=example -p 5432:5432 -d postgres
+$ docker run --name vaggo_postgres -e POSTGRES_USER=vaggo -e POSTGRES_DB=vaggo -e POSTGRES_PASSWORD=vaggo -p 5432:5432 -d postgres
 
 # Create the instance of redis using docker
-$ docker run --name example_redis -p 6379:6379 -d -t redis:alpine
+$ docker run --name vaggo_redis -p 6379:6379 -d -t redis:alpine
 
 # Make a copy of 'ormconfig.example.json' to 'ormconfig.json'
 # and set the values, if they are not filled,
