@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+  vaggo_redis:
+    container_name: vaggo_redis
+    image: redis:alpine
+    command: redis-server --requirepass "${REDIS_PASS}"
+    ports:
+      - ${REDIS_PORT}:${REDIS_PORT}
+    networks:
+      - vaggo_network
+  vaggo_postgres:
+    container_name: vaggo_postgres
+    image: postgres
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PASSWORD=${POSTGRES_PASS}
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    networks:
+      - vaggo_network
+  vaggo_app:
+    depends_on:
+      - "vaggo_redis"
+      - "vaggo_postgres"
+    container_name: vaggo_app
+    build: .
+    ports:
+    - "3333:3333"
+    volumes:
+      - .:/home/node/app/
+    networks:
+      - vaggo_network
+
+networks:
+  vaggo_network:
+    external: true
