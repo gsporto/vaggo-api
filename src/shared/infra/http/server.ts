@@ -15,11 +15,14 @@ import '@shared/container';
 
 const app = express();
 
+const prefix = process.env.PREFIX_API_URL
+  ? `/${process.env.PREFIX_API_URL}`
+  : '';
+
 app.use(cors());
 app.use(express.json());
 app.use(rateLimiter);
-app.use(routes);
-
+app.use(prefix, routes);
 app.use(errors());
 
 app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
