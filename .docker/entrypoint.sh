@@ -2,10 +2,12 @@
 
 yarn
 yarn typeorm migration:run
-if [ $PRODUCTION == "false" ];
+if [ "$PRODUCTION" = "true" ];
 then
-  yarn dev:server
-else
+  echo "Starting PROD"
   yarn build
   yarn start
+else
+  echo "Starting DEV"
+  yarn dev:server
 fi

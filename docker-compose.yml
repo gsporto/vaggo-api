@@ -25,6 +25,9 @@ services:
       - "vaggo_postgres"
     container_name: vaggo_app
     build: .
+    entrypoint: ./.docker/entrypoint.sh
+    environment:
+      - PRODUCTION=${PRODUCTION}
     ports:
     - "3333:3333"
     volumes:

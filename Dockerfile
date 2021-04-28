@@ -9,5 +9,3 @@ COPY ./.env  /home/node/app
 USER node
 
 WORKDIR /home/node/app
-
-CMD [ "bash", "/home/node/app/.docker/entrypoint.sh" ]
