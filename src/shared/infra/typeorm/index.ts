@@ -1,3 +1,6 @@
-import { createConnections } from 'typeorm';
+import { createConnection } from 'typeorm';
+import config from '@config/database';
 
-createConnections();
+createConnection({ ...config })
+  .then()
+  .catch(err => console.log(err));
