@@ -1,7 +1,5 @@
-import Candidates from '@modules/candidates/infra/typeorm/entities/Candidate';
-import User from '@modules/users/infra/typeorm/entities/User';
-import UserToken from '@modules/users/infra/typeorm/entities/UserToken';
 import { ConnectionOptions } from 'typeorm';
+import path from 'path';
 
 const config: ConnectionOptions = {
   name: 'default',
@@ -12,10 +10,17 @@ const config: ConnectionOptions = {
   password: process.env.POSTGRES_PASS,
   database: process.env.POSTGRES_DB,
   synchronize: false,
-  entities: [User, UserToken, Candidates],
-  migrations: [`../shared/infra/typeorm/migrations/*{.ts,.js}`],
+  entities: [
+    path.resolve(__dirname, '../modules/**/infra/typeorm/entities/*{.ts,.js}'),
+  ],
+  migrations: [
+    path.resolve(__dirname, '../shared/infra/typeorm/migrations/*{.ts,.js}'),
+  ],
   cli: {
-    migrationsDir: `../shared/infra/typeorm/migrations`,
+    migrationsDir: path.resolve(
+      __dirname,
+      '../shared/infra/typeorm/migrations',
+    ),
   },
 };
 
